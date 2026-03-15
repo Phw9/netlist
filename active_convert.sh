@@ -1,0 +1,1 @@
+netlist convert img/circuit.png -f edif --debug

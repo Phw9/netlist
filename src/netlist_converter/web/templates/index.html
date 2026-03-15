@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Netlist Converter - Upload{% endblock %}
+
+{% block content %}
+<div class="card upload-card">
+    <h1>Circuit Netlist Converter</h1>
+    <p class="subtitle">
+        Upload a circuit datasheet or schematic image (PDF, PNG, JPG) to extract a netlist.
+    </p>
+
+    <form action="/convert" method="post" enctype="multipart/form-data" id="convertForm">
+        <div class="form-group">
+            <label for="file">Select File</label>
+            <div class="file-drop" id="dropZone">
+                <input type="file" name="file" id="file" accept=".pdf,.png,.jpg,.jpeg,.bmp,.tiff,.webp" required>
+                <p class="drop-text">Drag & drop or click to select</p>
+                <p class="drop-hint">Supported: PDF, PNG, JPG, BMP, TIFF, WebP</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="output_format">Output Format</label>
+            <select name="output_format" id="output_format">
+                {% for fmt in formats %}
+                <option value="{{ fmt }}" {% if fmt == default_format %}selected{% endif %}>
+                    {{ fmt | upper }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="submitBtn">
+            Convert to Netlist
+        </button>
+    </form>
+</div>
+
+<div class="card info-card">
+    <h2>Supported Output Formats</h2>
+    <table class="info-table">
+        <thead>
+            <tr><th>Format</th><th>Extension</th><th>Compatibility</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>SPICE</td><td>.cir</td><td>LTSpice, ngspice, most EDA tools</td></tr>
+            <tr><td>EDIF</td><td>.edf</td><td>Zuken CR-5000/CR-8000, Cadence</td></tr>
+            <tr><td>KiCad</td><td>.net</td><td>KiCad EDA</td></tr>
+            <tr><td>JSON</td><td>.json</td><td>Custom integration / API</td></tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('convertForm').addEventListener('submit', function() {
+    var btn = document.getElementById('submitBtn');
+    btn.textContent = 'Processing... (this may take a minute)';
+    btn.disabled = true;
+});
+
+var dropZone = document.getElementById('dropZone');
+var fileInput = document.getElementById('file');
+
+dropZone.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    dropZone.classList.add('drag-over');
+});
+
+dropZone.addEventListener('dragleave', function() {
+    dropZone.classList.remove('drag-over');
+});
+
+dropZone.addEventListener('drop', function(e) {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    if (e.dataTransfer.files.length > 0) {
+        fileInput.files = e.dataTransfer.files;
+        dropZone.querySelector('.drop-text').textContent = e.dataTransfer.files[0].name;
+    }
+});
+
+fileInput.addEventListener('change', function() {
+    if (fileInput.files.length > 0) {
+        dropZone.querySelector('.drop-text').textContent = fileInput.files[0].name;
+    }
+});
+</script>
+{% endblock %}

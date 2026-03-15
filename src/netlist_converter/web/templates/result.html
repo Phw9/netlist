@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Conversion Result{% endblock %}
+
+{% block content %}
+<div class="card result-card">
+    <h1>Conversion Complete</h1>
+
+    <div class="result-meta">
+        <div class="meta-item">
+            <span class="meta-label">Source</span>
+            <span class="meta-value">{{ netlist.metadata.source_file }}</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Format</span>
+            <span class="meta-value">{{ format | upper }}</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Components</span>
+            <span class="meta-value">{{ netlist.component_count }}</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Nets</span>
+            <span class="meta-value">{{ netlist.net_count }}</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Confidence</span>
+            <span class="meta-value">{{ "%.0f" | format(netlist.metadata.confidence * 100) }}%</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">DB ID</span>
+            <span class="meta-value">#{{ conversion_id }}</span>
+        </div>
+    </div>
+
+    <div class="result-actions">
+        <a href="/download/{{ output_file }}" class="btn btn-primary">Download Netlist</a>
+        <a href="/download/{{ json_file }}" class="btn btn-secondary">Download JSON</a>
+        <a href="/api/visualize/{{ conversion_id }}" class="btn btn-secondary">Schematic Image</a>
+    </div>
+</div>
+
+{% if netlist.components %}
+<div class="card">
+    <h2>Components ({{ netlist.component_count }})</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Reference</th>
+                <th>Type</th>
+                <th>Value</th>
+                <th>Footprint</th>
+                <th>Pins</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comp in netlist.components %}
+            <tr>
+                <td><strong>{{ comp.reference }}</strong></td>
+                <td>{{ comp.component_type.value }}</td>
+                <td>{{ comp.value }}</td>
+                <td>{{ comp.footprint }}</td>
+                <td>{{ comp.pin_count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+{% if netlist.nets %}
+<div class="card">
+    <h2>Nets ({{ netlist.net_count }})</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Net Name</th>
+                <th>Connections</th>
+                <th>Connected Pins</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for net in netlist.nets %}
+            <tr>
+                <td><strong>{{ net.name }}</strong></td>
+                <td>{{ net.connection_count }}</td>
+                <td>
+                    {% for pin in net.pins %}
+                    {{ pin.component_ref }}:{{ pin.pin }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+<div class="back-link">
+    <a href="/">Convert another file</a>
+</div>
+{% endblock %}

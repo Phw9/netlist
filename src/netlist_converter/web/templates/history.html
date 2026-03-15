@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Conversion History{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>Conversion History</h1>
+
+    {% if records %}
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Source File</th>
+                <th>Date</th>
+                <th>Model</th>
+                <th>Confidence</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rec in records %}
+            <tr>
+                <td>#{{ rec.id }}</td>
+                <td>{{ rec.source_file }}</td>
+                <td>{{ rec.created_at }}</td>
+                <td>{{ rec.llm_model }}</td>
+                <td>{{ "%.0f" | format(rec.confidence * 100) }}%</td>
+                <td>
+                    <a href="/api/netlist/{{ rec.id }}" class="btn btn-small">JSON</a>
+                    <a href="/api/visualize/{{ rec.id }}" class="btn btn-small">Image</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="empty-state">No conversions yet. <a href="/">Upload a file</a> to get started.</p>
+    {% endif %}
+</div>
+{% endblock %}
