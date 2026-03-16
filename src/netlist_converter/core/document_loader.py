@@ -10,9 +10,11 @@ from PIL import Image
 
 SUPPORTED_IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".bmp", ".tiff", ".webp"}
 SUPPORTED_PDF_EXTENSION = ".pdf"
-PDF_RENDER_DPI = 100
-MAX_IMAGE_DIMENSION = 560
-JPEG_QUALITY = 70
+PDF_RENDER_DPI = 150
+# llama3.2-vision handles up to 1120px natively.
+# 1008px = good balance of detail and payload size (~120KB JPEG).
+MAX_IMAGE_DIMENSION = 1008
+JPEG_QUALITY = 85
 
 
 @dataclass

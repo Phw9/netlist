@@ -1,0 +1,237 @@
+{
+  "metadata": {
+    "source_file": "circuit.png",
+    "created_at": "2026-03-16T22:24:08.157409+00:00",
+    "tool_version": "0.1.0",
+    "llm_model": "llama3.2-vision:latest",
+    "confidence": 0.0
+  },
+  "components": [
+    {
+      "reference": "C19",
+      "component_type": "capacitor",
+      "value": "1uF",
+      "footprint": "",
+      "manufacturer": "",
+      "part_number": "",
+      "description": "",
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "pin_type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "",
+          "pin_type": "passive"
+        }
+      ]
+    },
+    {
+      "reference": "R39",
+      "component_type": "resistor",
+      "value": "47.5K",
+      "footprint": "",
+      "manufacturer": "",
+      "part_number": "",
+      "description": "",
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "pin_type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "",
+          "pin_type": "passive"
+        }
+      ]
+    },
+    {
+      "reference": "R41",
+      "component_type": "resistor",
+      "value": "100K",
+      "footprint": "",
+      "manufacturer": "",
+      "part_number": "",
+      "description": "",
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "pin_type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "",
+          "pin_type": "passive"
+        }
+      ]
+    },
+    {
+      "reference": "R66",
+      "component_type": "resistor",
+      "value": "100K",
+      "footprint": "",
+      "manufacturer": "",
+      "part_number": "",
+      "description": "",
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "pin_type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "",
+          "pin_type": "passive"
+        }
+      ]
+    },
+    {
+      "reference": "R68",
+      "component_type": "resistor",
+      "value": "100K",
+      "footprint": "",
+      "manufacturer": "",
+      "part_number": "",
+      "description": "",
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "pin_type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "",
+          "pin_type": "passive"
+        }
+      ]
+    },
+    {
+      "reference": "R76",
+      "component_type": "resistor",
+      "value": "68.1K",
+      "footprint": "",
+      "manufacturer": "",
+      "part_number": "",
+      "description": "",
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "pin_type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "",
+          "pin_type": "passive"
+        }
+      ]
+    },
+    {
+      "reference": "R77",
+      "component_type": "resistor",
+      "value": "47.5K",
+      "footprint": "",
+      "manufacturer": "",
+      "part_number": "",
+      "description": "",
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "pin_type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "",
+          "pin_type": "passive"
+        }
+      ]
+    },
+    {
+      "reference": "R78",
+      "component_type": "resistor",
+      "value": "47.5K",
+      "footprint": "",
+      "manufacturer": "",
+      "part_number": "",
+      "description": "",
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "pin_type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "",
+          "pin_type": "passive"
+        }
+      ]
+    },
+    {
+      "reference": "R88",
+      "component_type": "resistor",
+      "value": "475K",
+      "footprint": "",
+      "manufacturer": "",
+      "part_number": "",
+      "description": "",
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "pin_type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "",
+          "pin_type": "passive"
+        }
+      ]
+    },
+    {
+      "reference": "U3",
+      "component_type": "ic",
+      "value": "LM124",
+      "footprint": "",
+      "manufacturer": "",
+      "part_number": "",
+      "description": "",
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "pin_type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "",
+          "pin_type": "passive"
+        },
+        {
+          "number": "3",
+          "name": "",
+          "pin_type": "passive"
+        },
+        {
+          "number": "4",
+          "name": "",
+          "pin_type": "passive"
+        },
+        {
+          "number": "11",
+          "name": "",
+          "pin_type": "passive"
+        }
+      ]
+    }
+  ],
+  "nets": []
+}
